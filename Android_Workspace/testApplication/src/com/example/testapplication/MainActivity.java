@@ -63,9 +63,16 @@ public class MainActivity extends Activity {
 					System.out.println("The string at " + i + " is: "
 							+ GetLotteryResults.returnNumbers().get(i));
 				}
+
+				for (int i = 0; i < CheckNumbers.returnCheckedNumbers().size(); i++) {
+
+					System.out.println("The string at " + i + " is: "
+							+ GetLotteryResults.returnNumbers().get(i));
+				}
 			}
 		});
 
+		CheckNumbers.returnCheckedNumbers();
 	}
 
 	@Override
