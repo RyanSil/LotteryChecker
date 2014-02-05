@@ -1,0 +1,79 @@
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/AbsoluteLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+
+    <EditText
+        android:id="@+id/fifthNumber"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_x="200dp"
+        android:layout_y="5dp"
+        android:ems="10"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/secondNumber"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_x="50dp"
+        android:layout_y="5dp"
+        android:ems="10"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/firstNumber"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_x="5dp"
+        android:layout_y="5dp"
+        android:ems="10"
+        android:inputType="number" >
+
+        <requestFocus />
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/fourthNumber"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_x="150dp"
+        android:layout_y="5dp"
+        android:ems="10"
+        android:inputType="number" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/thirdNumber"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_x="100dp"
+        android:layout_y="5dp"
+        android:ems="10"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/powerBall"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_x="250dp"
+        android:layout_y="5dp"
+        android:ems="10"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="96dp"
+        android:layout_y="94dp"
+        android:text="Submit" />
+
+</AbsoluteLayout>
