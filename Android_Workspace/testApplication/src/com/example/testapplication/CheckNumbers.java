@@ -2,17 +2,20 @@ package com.example.testapplication;
 
 import java.util.ArrayList;
 
-public class CheckNumbers {
+import android.os.AsyncTask;
+
+public class CheckNumbers extends
+		AsyncTask<ArrayList<String>, Void, ArrayList<String>> {
 	private static int numbersHit = 0;
 	private static int specialBall = 0;
-	private static ArrayList<Integer> checkedNumbers;
+	private static ArrayList<Integer> checkedNumbers = new ArrayList<Integer>();
 
 	public static void checkNumbers(ArrayList<String> inputNumbers,
 			ArrayList<String> winningNumbers, int specialBallInput,
 			int specialBallWin) {
 
 		System.out.println(inputNumbers.size());
-		
+
 		if (specialBallInput == specialBallWin)
 			specialBall++;
 
@@ -33,10 +36,17 @@ public class CheckNumbers {
 	}
 
 	public static ArrayList<Integer> returnCheckedNumbers() {
-		checkedNumbers.add(numbersHit);
-		checkedNumbers.add(specialBall);
-		resetCounters();
+		// System.out.println("In returnCheckedNumbers");
 		return checkedNumbers;
 
 	}
+
+	@Override
+	protected ArrayList<String> doInBackground(ArrayList<String>... params) {
+		checkedNumbers.add(1);
+		checkedNumbers.add(2);
+		System.out.println("In new task");
+		return null;
+	}
+
 }

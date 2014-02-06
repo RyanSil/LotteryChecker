@@ -27,52 +27,63 @@ public class MainActivity extends Activity {
 	private int numbersHit = 0;
 	private int powerBallHit = 0;
 
-	private ArrayList<String> testArray;
+	private ArrayList<String> testArray = new ArrayList<String>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		testArray.add("5");
+		testArray.add("6");
 		submitNumbers = (Button) findViewById(R.id.submitButton);
 		submitNumbers.setOnClickListener(new View.OnClickListener() {
 
+			@SuppressWarnings("unchecked")
 			@Override
 			public void onClick(View v) {
+
 				try {
-					new GetLotteryResults()
-							.execute(
-									"http://www.palottery.state.pa.us/Games/Past-Winning-Numbers.aspx?id=15&year=2014#pwn_results")
-							.get(5000, TimeUnit.MILLISECONDS);
+					// new GetLotteryResults()
+					// .execute(
+					// "http://www.palottery.state.pa.us/Games/Past-Winning-Numbers.aspx?id=15&year=2014#pwn_results")
+					// .get(5000, TimeUnit.MILLISECONDS);
+					new CheckNumbers().execute(testArray).get(10000,
+							TimeUnit.MILLISECONDS);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (ExecutionException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (TimeoutException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+
+				for (int t = 0; t < testArray.size(); t++)
+					System.out.println("TestArray at " + t + " is: "
+							+ testArray.get(t));
+
 				getNumbers();
 				checkNumbers();
 				checkPowerball();
 				checkPrizes();
 				reset();
+
 				for (int i = 0; i < GetLotteryResults.returnNumbers().size(); i++) {
 
 					System.out.println("The string at " + i + " is: "
 							+ GetLotteryResults.returnNumbers().get(i));
 				}
 
-				for (int i = 0; i < CheckNumbers.returnCheckedNumbers().size(); i++) {
+				System.out.println("Before the check numbers loop");
+				System.out.println("The check numbers length is: "
+						+ CheckNumbers.returnCheckedNumbers().size());
 
-					System.out.println("The string at " + i + " is: "
-							+ GetLotteryResults.returnNumbers().get(i));
+				for (int n = 0; n < CheckNumbers.returnCheckedNumbers().size(); n++) {
+
+					System.out.println("The string at " + n + " is: "
+							+ CheckNumbers.returnCheckedNumbers().get(n));
 				}
 			}
 		});
-
-		CheckNumbers.returnCheckedNumbers();
 	}
 
 	@Override
