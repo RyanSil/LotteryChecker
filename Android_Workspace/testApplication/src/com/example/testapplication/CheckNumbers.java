@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 import android.os.AsyncTask;
 
-public class CheckNumbers extends
-		AsyncTask<ArrayList<String>, Void, ArrayList<String>> {
+public class CheckNumbers extends AsyncTask<Object, Void, Object> {
 	private static int numbersHit = 0;
 	private static int specialBall = 0;
 	private static ArrayList<Integer> checkedNumbers = new ArrayList<Integer>();
@@ -42,10 +41,15 @@ public class CheckNumbers extends
 	}
 
 	@Override
-	protected ArrayList<String> doInBackground(ArrayList<String>... params) {
+	protected Object doInBackground(Object... params) {
 		checkedNumbers.add(1);
 		checkedNumbers.add(2);
 		System.out.println("In new task");
+		ArrayList<String> testArray = (ArrayList<String>) params[0];
+
+		for (int n = 0; n < testArray.size(); n++)
+			System.out.println("Test Array input into execute at " + n + ": "
+					+ testArray.get(n));
 		return null;
 	}
 

@@ -43,11 +43,9 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 
 				try {
-					// new GetLotteryResults()
-					// .execute(
-					// "http://www.palottery.state.pa.us/Games/Past-Winning-Numbers.aspx?id=15&year=2014#pwn_results")
-					// .get(5000, TimeUnit.MILLISECONDS);
-					new CheckNumbers().execute(testArray).get(10000,
+					new GetLotteryResults().execute(15, 2013, "12/31/2013")
+							.get(5000, TimeUnit.MILLISECONDS);
+					new CheckNumbers().execute(testArray).get(5000,
 							TimeUnit.MILLISECONDS);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -57,9 +55,9 @@ public class MainActivity extends Activity {
 					e.printStackTrace();
 				}
 
-				for (int t = 0; t < testArray.size(); t++)
-					System.out.println("TestArray at " + t + " is: "
-							+ testArray.get(t));
+				// for (int t = 0; t < testArray.size(); t++)
+				// System.out.println("TestArray at " + t + " is: "
+				// + testArray.get(t));
 
 				getNumbers();
 				checkNumbers();
@@ -72,16 +70,17 @@ public class MainActivity extends Activity {
 					System.out.println("The string at " + i + " is: "
 							+ GetLotteryResults.returnNumbers().get(i));
 				}
-
-				System.out.println("Before the check numbers loop");
-				System.out.println("The check numbers length is: "
-						+ CheckNumbers.returnCheckedNumbers().size());
-
-				for (int n = 0; n < CheckNumbers.returnCheckedNumbers().size(); n++) {
-
-					System.out.println("The string at " + n + " is: "
-							+ CheckNumbers.returnCheckedNumbers().get(n));
-				}
+				//
+				// System.out.println("Before the check numbers loop");
+				// System.out.println("The check numbers length is: "
+				// + CheckNumbers.returnCheckedNumbers().size());
+				//
+				// for (int n = 0; n <
+				// CheckNumbers.returnCheckedNumbers().size(); n++) {
+				//
+				// System.out.println("The string at " + n + " is: "
+				// + CheckNumbers.returnCheckedNumbers().get(n));
+				// }
 			}
 		});
 	}

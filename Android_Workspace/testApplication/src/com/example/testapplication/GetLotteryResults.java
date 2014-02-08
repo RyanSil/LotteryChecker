@@ -12,23 +12,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class GetLotteryResults extends AsyncTask<String, Void, String> {
-	private static int year;
-	private static int id;
+public class GetLotteryResults extends AsyncTask<Object, Void, Object> {
+
 	private static ArrayList<String> lotteryNumbers = new ArrayList<String>();
 
-	public static void getResults(int id, int year, String[] website) {
-		String[] site = website;
+	public static void getResults(int id, int year, String date) {
+		String site = "http://www.palottery.state.pa.us/Games/Past-Winning-Numbers.aspx?id="
+				+ id + "&year=" + year + "#pwn_results";
+
 		try {
-			URL url = new URL(site[0]);
+			URL url = new URL(site);
 			URLConnection connection = url.openConnection();
 			connection.connect();
 			Scanner in = new Scanner(connection.getInputStream());
-			// System.out.println("Before While");
 
 			while (in.hasNextLine())
-				if (in.nextLine().contains("01/31/2014")) {
-					// System.out.println("In if");
+				if (in.nextLine().contains(date)) {
+
 					lotteryNumbers.add(in.nextLine());
 					in.nextLine();
 					lotteryNumbers.add(in.nextLine());
@@ -44,6 +44,8 @@ public class GetLotteryResults extends AsyncTask<String, Void, String> {
 					lotteryNumbers.add(in.nextLine());
 					in.nextLine();
 					in.nextLine();
+					in.nextLine();
+					lotteryNumbers.add(in.nextLine());
 				}
 
 		} catch (Exception e) {
@@ -57,8 +59,15 @@ public class GetLotteryResults extends AsyncTask<String, Void, String> {
 	}
 
 	@Override
-	protected String doInBackground(String... params) {
-		getResults(15, 2014, params);
+	protected String doInBackground(Object... params) {
+		// params[0] id of game IE: 15 = megaball
+		// params[1] year
+		// params[2] date ie: 01/31/2014
+
+		int id = (Integer) params[0];
+		int year = (Integer) params[1];
+		String date = (String) params[2];
+		getResults(id, year, date);
 		return null;
 	}
 
