@@ -15,6 +15,7 @@ import android.widget.Button;
 public class GetLotteryResults extends AsyncTask<Object, Void, Object> {
 
 	private static ArrayList<String> lotteryNumbers = new ArrayList<String>();
+	private static ArrayList<Integer> intLotterNumbers = new ArrayList<Integer>();
 
 	public static void getResults(int id, int year, String date) {
 		String site = "http://www.palottery.state.pa.us/Games/Past-Winning-Numbers.aspx?id="
@@ -41,21 +42,35 @@ public class GetLotteryResults extends AsyncTask<Object, Void, Object> {
 					in.nextLine();
 					in.nextLine();
 					in.nextLine();
-					lotteryNumbers.add(in.nextLine());
+					lotteryNumbers.add(in.nextLine()); // powerball
 					in.nextLine();
 					in.nextLine();
 					in.nextLine();
-					lotteryNumbers.add(in.nextLine());
+					lotteryNumbers.add(in.nextLine()); // multiplier
 				}
+			for (int i = 0; i < lotteryNumbers.size(); i++) {
+				lotteryNumbers.set(i, lotteryNumbers.get(i).trim());
+				// System.out.println("lotteryNumbers.get(" + i + "): "
+				// + lotteryNumbers.get(i));
+			}
+
+			try {
+				for (int n = 0; n < lotteryNumbers.size(); n++) {
+
+					intLotterNumbers
+							.add(Integer.parseInt(lotteryNumbers.get(n)));
+					System.out.println("intLotteryNumbers.get(" + n + "): "
+							+ intLotterNumbers.get(n));
+				}
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
 
 		} catch (Exception e) {
 			System.out.println("In Exception");
 			System.out.println(e);
 		}
 
-		// for (int i = 0; i < lotteryNumbers.size(); i++)
-		// System.out.println("The string at " + i + "is: "
-		// + lotteryNumbers.get(i));
 	}
 
 	@Override
@@ -71,8 +86,8 @@ public class GetLotteryResults extends AsyncTask<Object, Void, Object> {
 		return null;
 	}
 
-	public static ArrayList<String> returnNumbers() {
-		return lotteryNumbers;
+	public static ArrayList<Integer> returnNumbers() {
+		return intLotterNumbers;
 
 	}
 }

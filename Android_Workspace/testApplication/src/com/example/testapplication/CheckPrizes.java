@@ -9,9 +9,9 @@ public class CheckPrizes extends AsyncTask<Object, Void, Object> {
 
 	private static void checkPrizes(ArrayList<Integer> checkedNumbers,
 			String game) {
-		System.out.println("I'm in the checkprizes called method");
-		System.out.println("Checked number #0: " + checkedNumbers.get(0));
-		System.out.println("Checked number #1: " + checkedNumbers.get(1));
+		// System.out.println("I'm in the checkprizes called method");
+		// System.out.println("Checked number #0: " + checkedNumbers.get(0));
+		// System.out.println("Checked number #1: " + checkedNumbers.get(1));
 
 		if (game == "Mega Millions") {
 
@@ -54,11 +54,13 @@ public class CheckPrizes extends AsyncTask<Object, Void, Object> {
 	protected Object doInBackground(Object... params) {
 		ArrayList<Integer> checkedNumbers = (ArrayList<Integer>) params[0];
 		String game = (String) params[1];
-		System.out.println("In CheckedPrizes execute!!!");
-		for (int i = 0; i < checkedNumbers.size(); i++)
-			System.out.println("checkedNumbers@" + i + ": "
-					+ checkedNumbers.get(i));
+
+		// for (int i = 0; i < checkedNumbers.size(); i++)
+		// System.out.println("checkedNumbers@" + i + ": "
+		// + checkedNumbers.get(i));
+
 		checkPrizes(checkedNumbers, game);
+
 		return null;
 	}
 }

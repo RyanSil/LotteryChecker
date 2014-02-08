@@ -22,13 +22,13 @@ public class MainActivity extends Activity {
 	private EditText fourthNumber;
 	private EditText fifthNumber;
 	private EditText specialNumber;
-	private Editable[] numbers;
-	private String[] lotteryNumbers;
-	private String powerBall = "07";
-	private int numbersHit = 0;
-	private int powerBallHit = 0;
+	// private Editable[] numbers;
+	// private String[] lotteryNumbers;
+	// private String powerBall = "07";
+	// private int numbersHit = 0;
+	// private int powerBallHit = 0;
 
-	private ArrayList<String> inputNumbers = new ArrayList<String>();
+	private ArrayList<Integer> inputNumbers = new ArrayList<Integer>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +45,10 @@ public class MainActivity extends Activity {
 				getNumbers();
 
 				try {
-					new GetLotteryResults().execute(15, 2012, "12/28/2012")
-							.get(5000, TimeUnit.MILLISECONDS);
+					new GetLotteryResults().execute(15, 2012, "12/25/2012")
+							.get(10000, TimeUnit.MILLISECONDS);
 					new CheckNumbers().execute(inputNumbers,
-							GetLotteryResults.returnNumbers()).get(5000,
+							GetLotteryResults.returnNumbers()).get(10000,
 							TimeUnit.MILLISECONDS);
 					new CheckPrizes().execute(
 							CheckNumbers.returnCheckedNumbers(),
@@ -104,20 +104,13 @@ public class MainActivity extends Activity {
 		fourthNumber = (EditText) findViewById(R.id.fourthNumber);
 		fifthNumber = (EditText) findViewById(R.id.fifthNumber);
 		specialNumber = (EditText) findViewById(R.id.powerBall);
-		numbers = new Editable[5];
 
-		numbers[0] = firstNumber.getText();
-		numbers[1] = secondNumber.getText();
-		numbers[2] = thirdNumber.getText();
-		numbers[3] = fourthNumber.getText();
-		numbers[4] = fifthNumber.getText();
-
-		inputNumbers.add(firstNumber.getText().toString());
-		inputNumbers.add(secondNumber.getText().toString());
-		inputNumbers.add(thirdNumber.getText().toString());
-		inputNumbers.add(fourthNumber.getText().toString());
-		inputNumbers.add(fifthNumber.getText().toString());
-		inputNumbers.add(specialNumber.getText().toString());
+		inputNumbers.add(Integer.parseInt(firstNumber.getText().toString()));
+		inputNumbers.add(Integer.parseInt(secondNumber.getText().toString()));
+		inputNumbers.add(Integer.parseInt(thirdNumber.getText().toString()));
+		inputNumbers.add(Integer.parseInt(fourthNumber.getText().toString()));
+		inputNumbers.add(Integer.parseInt(fifthNumber.getText().toString()));
+		inputNumbers.add(Integer.parseInt(specialNumber.getText().toString()));
 
 		// for (int i = 0; i < inputNumbers.size(); i++)
 		// System.out.println("The numbers at inputNumbers array #" + i
@@ -206,6 +199,6 @@ public class MainActivity extends Activity {
 		thirdNumber.setText("");
 		fourthNumber.setText("");
 		fifthNumber.setText("");
-		// powerBallInput.setText("");
+		specialNumber.setText("");
 	}
 }
