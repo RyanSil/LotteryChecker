@@ -1,6 +1,7 @@
 package com.example.testapplication;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -27,14 +28,13 @@ public class MainActivity extends Activity {
 	private int numbersHit = 0;
 	private int powerBallHit = 0;
 
-	private ArrayList<String> testArray = new ArrayList<String>();
+	private ArrayList<String> inputNumbers = new ArrayList<String>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		testArray.add("5");
-		testArray.add("6");
+
 		submitNumbers = (Button) findViewById(R.id.submitButton);
 		submitNumbers.setOnClickListener(new View.OnClickListener() {
 
@@ -42,10 +42,13 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 
+				getNumbers();
+
 				try {
 					new GetLotteryResults().execute(15, 2013, "12/31/2013")
 							.get(5000, TimeUnit.MILLISECONDS);
-					new CheckNumbers().execute(testArray).get(5000,
+					new CheckNumbers().execute(inputNumbers,
+							GetLotteryResults.returnNumbers()).get(5000,
 							TimeUnit.MILLISECONDS);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -59,17 +62,17 @@ public class MainActivity extends Activity {
 				// System.out.println("TestArray at " + t + " is: "
 				// + testArray.get(t));
 
-				getNumbers();
 				checkNumbers();
 				checkPowerball();
 				checkPrizes();
 				reset();
 
-				for (int i = 0; i < GetLotteryResults.returnNumbers().size(); i++) {
-
-					System.out.println("The string at " + i + " is: "
-							+ GetLotteryResults.returnNumbers().get(i));
-				}
+				// for (int i = 0; i < GetLotteryResults.returnNumbers().size();
+				// i++) {
+				//
+				// System.out.println("The string at " + i + " is: "
+				// + GetLotteryResults.returnNumbers().get(i));
+				// }
 				//
 				// System.out.println("Before the check numbers loop");
 				// System.out.println("The check numbers length is: "
@@ -108,11 +111,19 @@ public class MainActivity extends Activity {
 		numbers[3] = fourthNumber.getText();
 		numbers[4] = fifthNumber.getText();
 
-		for (int n = 0; n < numbers.length; n++) {
-			System.out.println("The number at array[" + n + "] is: "
-					+ numbers[n].toString());
+		inputNumbers.add(firstNumber.getText().toString());
+		inputNumbers.add(secondNumber.getText().toString());
+		inputNumbers.add(thirdNumber.getText().toString());
+		inputNumbers.add(fourthNumber.getText().toString());
+		inputNumbers.add(fifthNumber.getText().toString());
 
-		}
+		// for (int i = 0; i < inputNumbers.size(); i++)
+		// System.out.println("The numbers at inputNumbers array #" + i
+		// + "is: " + inputNumbers.get(i));
+		//
+		// for (int n = 0; n < numbers.length; n++) {
+		// System.out.println("The number at array[" + n + "] is: "
+		// + numbers[n].toString());
 
 	}
 
