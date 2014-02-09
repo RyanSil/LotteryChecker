@@ -80,8 +80,17 @@
         android:id="@+id/multiplier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="116dp"
-        android:layout_y="183dp"
+        android:layout_x="94dp"
+        android:layout_y="163dp"
         android:text="ToggleButton" />
+
+    <DatePicker
+        android:id="@+id/datePicker1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="16dp"
+        android:layout_y="254dp"
+        android:calendarViewShown="false"
+        android:spinnersShown="true" />
 
 </AbsoluteLayout>

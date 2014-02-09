@@ -25,7 +25,8 @@ public final class R {
     }
     public static final class id {
         public static final int AbsoluteLayout1=0x7f080000;
-        public static final int action_settings=0x7f080009;
+        public static final int action_settings=0x7f08000a;
+        public static final int datePicker1=0x7f080009;
         public static final int fifthNumber=0x7f080001;
         public static final int firstNumber=0x7f080003;
         public static final int fourthNumber=0x7f080004;

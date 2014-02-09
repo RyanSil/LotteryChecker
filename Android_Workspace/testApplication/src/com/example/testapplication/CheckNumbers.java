@@ -22,22 +22,23 @@ public class CheckNumbers extends AsyncTask<Object, Void, Object> {
 
 		for (int i = 0; i < inputNumbers.size() - 1; i++) {
 
-			for (int n = 0; n < winningNumbers.size(); n++) {
+			for (int n = 0; n < winningNumbers.size() - 2; n++) {
 
 				if (winningNumbers.get(n) == inputNumbers.get(i)) {
+					// System.out.println("WinningNumbers.get(" + n + "): "
+					// + winningNumbers.get(n));
+					// System.out.println("inputNumbers.get(" + i + "): "
+					// + inputNumbers.get(i));
 					numbersHit++;
 				}
 			}
-			System.out.println("Numbers Hit in checkNumbers.java: "
-					+ numbersHit);
 
 		}
-		// System.out.println(inputNumbers.get(5));
-		// System.out.println(winningNumbers.get(5));
 
 		if (inputNumbers.get(5) == winningNumbers.get(5)) {
 			specialBall++;
 		}
+		System.out.println("Numbers Hit in checkNumbers.java: " + numbersHit);
 		checkedNumbers.add(numbersHit);
 		checkedNumbers.add(specialBall);
 	}

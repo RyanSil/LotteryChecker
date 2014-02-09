@@ -59,8 +59,8 @@ public class GetLotteryResults extends AsyncTask<Object, Void, Object> {
 
 					intLotterNumbers
 							.add(Integer.parseInt(lotteryNumbers.get(n)));
-					System.out.println("intLotteryNumbers.get(" + n + "): "
-							+ intLotterNumbers.get(n));
+					// System.out.println("intLotteryNumbers.get(" + n + "): "
+					// + intLotterNumbers.get(n));
 				}
 			} catch (NumberFormatException e) {
 				e.printStackTrace();

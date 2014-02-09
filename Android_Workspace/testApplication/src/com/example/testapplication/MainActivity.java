@@ -1,18 +1,21 @@
 package com.example.testapplication;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.text.Editable;
+import android.text.format.Formatter;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ToggleButton;
 
 public class MainActivity extends Activity {
 	private Button submitNumbers;
@@ -22,7 +25,16 @@ public class MainActivity extends Activity {
 	private EditText fourthNumber;
 	private EditText fifthNumber;
 	private EditText specialNumber;
-	private EditText multiplier;
+	private ToggleButton multiplierButton;
+	private int multiplier;
+	private DatePicker datePicker;
+	private static String date;
+	private static String dayString;
+	private Integer day;
+	private Integer month;
+	private Integer year;
+	private StringBuilder sb = new StringBuilder();
+	private NumberFormat formatter = new DecimalFormat("00");
 
 	private ArrayList<Integer> inputNumbers = new ArrayList<Integer>();
 
@@ -41,8 +53,8 @@ public class MainActivity extends Activity {
 				getNumbers();
 
 				try {
-					new GetLotteryResults().execute(15, 2012, "12/18/2012")
-							.get(10000, TimeUnit.MILLISECONDS);
+					new GetLotteryResults().execute(15, returnYear(),
+							returnDate()).get(10000, TimeUnit.MILLISECONDS);
 					new CheckNumbers().execute(inputNumbers,
 							GetLotteryResults.returnNumbers()).get(10000,
 							TimeUnit.MILLISECONDS);
@@ -79,7 +91,7 @@ public class MainActivity extends Activity {
 		fourthNumber = (EditText) findViewById(R.id.fourthNumber);
 		fifthNumber = (EditText) findViewById(R.id.fifthNumber);
 		specialNumber = (EditText) findViewById(R.id.powerBall);
-		multiplier = (EditText) findViewById(R.id.multiplier);
+		multiplierButton = (ToggleButton) findViewById(R.id.multiplier);
 
 		inputNumbers.add(Integer.parseInt(firstNumber.getText().toString()));
 		inputNumbers.add(Integer.parseInt(secondNumber.getText().toString()));
@@ -88,6 +100,45 @@ public class MainActivity extends Activity {
 		inputNumbers.add(Integer.parseInt(fifthNumber.getText().toString()));
 		inputNumbers.add(Integer.parseInt(specialNumber.getText().toString()));
 
+		datePicker = (DatePicker) findViewById(R.id.datePicker1);
+
+		if (datePicker.getDayOfMonth() < 10) {
+			day = datePicker.getDayOfMonth();
+			sb.append("0");
+			sb.append(day.toString());
+
+			dayString = sb.toString();
+
+			month = datePicker.getMonth() + 1; // need to add one for website to
+												// return correct results
+			year = datePicker.getYear();
+
+			date = month.toString() + "/" + dayString + "/" + year.toString();
+
+			System.out.println("Date: " + month.toString() + "/" + dayString
+					+ "/" + year.toString());
+
+		} else {
+
+			day = datePicker.getDayOfMonth();
+			month = datePicker.getMonth() + 1; // need to add one for
+			// website to return correct results
+			year = datePicker.getYear();
+			date = month.toString() + "/" + day.toString() + "/"
+					+ year.toString();
+			System.out.println("Date: " + month.toString() + "/"
+					+ day.toString() + "/" + year.toString());
+
+		}
+
+	}
+
+	private String returnDate() {
+		return date;
+	}
+
+	private int returnYear() {
+		return year;
 	}
 
 	private void reset() {
