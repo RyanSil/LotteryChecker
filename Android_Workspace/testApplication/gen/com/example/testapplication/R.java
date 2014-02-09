@@ -25,10 +25,11 @@ public final class R {
     }
     public static final class id {
         public static final int AbsoluteLayout1=0x7f080000;
-        public static final int action_settings=0x7f080008;
+        public static final int action_settings=0x7f080009;
         public static final int fifthNumber=0x7f080001;
         public static final int firstNumber=0x7f080003;
         public static final int fourthNumber=0x7f080004;
+        public static final int multiplier=0x7f080008;
         public static final int powerBall=0x7f080006;
         public static final int secondNumber=0x7f080002;
         public static final int submitButton=0x7f080007;

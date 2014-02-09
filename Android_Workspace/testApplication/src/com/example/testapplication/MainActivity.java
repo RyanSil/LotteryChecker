@@ -22,11 +22,7 @@ public class MainActivity extends Activity {
 	private EditText fourthNumber;
 	private EditText fifthNumber;
 	private EditText specialNumber;
-	// private Editable[] numbers;
-	// private String[] lotteryNumbers;
-	// private String powerBall = "07";
-	// private int numbersHit = 0;
-	// private int powerBallHit = 0;
+	private EditText multiplier;
 
 	private ArrayList<Integer> inputNumbers = new ArrayList<Integer>();
 
@@ -45,7 +41,7 @@ public class MainActivity extends Activity {
 				getNumbers();
 
 				try {
-					new GetLotteryResults().execute(15, 2012, "12/25/2012")
+					new GetLotteryResults().execute(15, 2012, "12/18/2012")
 							.get(10000, TimeUnit.MILLISECONDS);
 					new CheckNumbers().execute(inputNumbers,
 							GetLotteryResults.returnNumbers()).get(10000,
@@ -61,29 +57,8 @@ public class MainActivity extends Activity {
 					e.printStackTrace();
 				}
 
-				// for (int t = 0; t < testArray.size(); t++)
-				// System.out.println("TestArray at " + t + " is: "
-				// + testArray.get(t));
-
 				reset();
 
-				// for (int i = 0; i < GetLotteryResults.returnNumbers().size();
-				// i++) {
-				//
-				// System.out.println("The string at " + i + " is: "
-				// + GetLotteryResults.returnNumbers().get(i));
-				// }
-				//
-				// System.out.println("Before the check numbers loop");
-				// System.out.println("The check numbers length is: "
-				// + CheckNumbers.returnCheckedNumbers().size());
-				//
-				// for (int n = 0; n <
-				// CheckNumbers.returnCheckedNumbers().size(); n++) {
-				//
-				// System.out.println("The string at " + n + " is: "
-				// + CheckNumbers.returnCheckedNumbers().get(n));
-				// }
 			}
 		});
 	}
@@ -104,6 +79,7 @@ public class MainActivity extends Activity {
 		fourthNumber = (EditText) findViewById(R.id.fourthNumber);
 		fifthNumber = (EditText) findViewById(R.id.fifthNumber);
 		specialNumber = (EditText) findViewById(R.id.powerBall);
+		multiplier = (EditText) findViewById(R.id.multiplier);
 
 		inputNumbers.add(Integer.parseInt(firstNumber.getText().toString()));
 		inputNumbers.add(Integer.parseInt(secondNumber.getText().toString()));
@@ -112,84 +88,7 @@ public class MainActivity extends Activity {
 		inputNumbers.add(Integer.parseInt(fifthNumber.getText().toString()));
 		inputNumbers.add(Integer.parseInt(specialNumber.getText().toString()));
 
-		// for (int i = 0; i < inputNumbers.size(); i++)
-		// System.out.println("The numbers at inputNumbers array #" + i
-		// + "is: " + inputNumbers.get(i));
-		//
-		// for (int n = 0; n < numbers.length; n++) {
-		// System.out.println("The number at array[" + n + "] is: "
-		// + numbers[n].toString());
-
 	}
-
-	// private void checkNumbers() {
-	// lotteryNumbers = new String[5];
-	// lotteryNumbers[0] = "08";
-	// lotteryNumbers[1] = "14";
-	// lotteryNumbers[2] = "17";
-	// lotteryNumbers[3] = "20";
-	// lotteryNumbers[4] = "39";
-	//
-	// for (int n = 0; n < numbers.length; n++) {
-	// for (int i = 0; i < lotteryNumbers.length; i++) {
-	// if (lotteryNumbers[i].toString().contains(numbers[n])) {
-	// System.out.println("This number hit: "
-	// + numbers[n].toString());
-	// numbersHit++;
-	//
-	// } else {
-	// System.out.println("");
-	// }
-	// }
-	// }
-	// System.out.println(numbersHit);
-	// }
-
-	// private void checkPrizes() {
-	//
-	// if (powerBallHit == 1) {
-	// if (numbersHit == 5)
-	// System.out.println("You hit the Jackpot!");
-	// if (numbersHit == 4)
-	// System.out.println("You won $5,000.00");
-	// if (numbersHit == 3)
-	// System.out.println("You won $50.00");
-	// if (numbersHit == 2)
-	// System.out.println("You won $5.00");
-	// if (numbersHit == 1)
-	// System.out.println("You won $2.00");
-	// if (numbersHit == 0)
-	// System.out.println("You won $1.00");
-	// } else {
-	//
-	// if (numbersHit == 3) {
-	// System.out.println("You've won $7.00!");
-	// } else {
-	// if (numbersHit == 4) {
-	// System.out.println("You've won $100.00!");
-	// } else {
-	// if (numbersHit == 5) {
-	// System.out.println("You've won $1,000,000.00!");
-	// } else {
-	// System.out.println("You did not win, sorry.");
-	// }
-	// }
-	// }
-	// }
-	// }
-
-	// private void checkPowerball() {
-	//
-	// powerBallInput = (EditText) findViewById(R.id.powerBall);
-	//
-	// if (powerBall.contains(powerBallInput.getText())) {
-	// powerBallHit++;
-	// System.out.println("Did I hit the powerball?: " + powerBallHit);
-	// } else {
-	// System.out.println("You did not hit the powerball!");
-	// }
-	//
-	// }
 
 	private void reset() {
 		// numbersHit = 0;

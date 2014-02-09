@@ -16,7 +16,11 @@ public class CheckNumbers extends AsyncTask<Object, Void, Object> {
 	public static void checkNumbers(ArrayList<Integer> inputNumbers,
 			ArrayList<Integer> winningNumbers) {
 
-		for (int i = 0; i < inputNumbers.size() - 2; i++) {
+		for (int t = 0; t < inputNumbers.size() - 1; t++)
+			System.out
+					.println("inputNumbers " + t + ": " + inputNumbers.get(t));
+
+		for (int i = 0; i < inputNumbers.size() - 1; i++) {
 
 			for (int n = 0; n < winningNumbers.size(); n++) {
 
