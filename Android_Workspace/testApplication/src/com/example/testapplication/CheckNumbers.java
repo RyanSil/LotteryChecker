@@ -8,7 +8,7 @@ import android.os.PowerManager;
 public class CheckNumbers extends AsyncTask<Object, Void, Object> {
 	private static int numbersHit = 0;
 	private static int specialBall = 0;
-	private static int multi = 0;
+	private static int multiplier = 0;
 	private static ArrayList<Integer> checkedNumbers = new ArrayList<Integer>();
 
 	// TODO have to alter this information so it pulls out powerball and
@@ -25,10 +25,6 @@ public class CheckNumbers extends AsyncTask<Object, Void, Object> {
 			for (int n = 0; n < winningNumbers.size() - 2; n++) {
 
 				if (winningNumbers.get(n) == inputNumbers.get(i)) {
-					// System.out.println("WinningNumbers.get(" + n + "): "
-					// + winningNumbers.get(n));
-					// System.out.println("inputNumbers.get(" + i + "): "
-					// + inputNumbers.get(i));
 					numbersHit++;
 				}
 			}
@@ -43,9 +39,11 @@ public class CheckNumbers extends AsyncTask<Object, Void, Object> {
 		checkedNumbers.add(specialBall);
 	}
 
-	private static void resetCounters() {
+	static void reset() {
 		numbersHit = 0;
 		specialBall = 0;
+		multiplier = 0;
+		checkedNumbers.clear();
 	}
 
 	public static ArrayList<Integer> returnCheckedNumbers() {

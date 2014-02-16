@@ -10,13 +10,18 @@
     tools:context=".MainActivity" >
 
     <EditText
-        android:id="@+id/fifthNumber"
+        android:id="@+id/firstNumber"
         android:layout_width="45dp"
         android:layout_height="wrap_content"
-        android:layout_x="200dp"
+        android:layout_x="5dp"
         android:layout_y="5dp"
         android:ems="10"
-        android:inputType="number" />
+        android:inputType="number"
+        android:nextFocusDown="@+id/secondNumber" >
+
+        <requestFocus>
+        </requestFocus>
+    </EditText>
 
     <EditText
         android:id="@+id/secondNumber"
@@ -25,29 +30,8 @@
         android:layout_x="50dp"
         android:layout_y="5dp"
         android:ems="10"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/firstNumber"
-        android:layout_width="45dp"
-        android:layout_height="wrap_content"
-        android:layout_x="5dp"
-        android:layout_y="5dp"
-        android:ems="10"
-        android:inputType="number" >
-
-        <requestFocus />
-
-    </EditText>
-
-    <EditText
-        android:id="@+id/fourthNumber"
-        android:layout_width="45dp"
-        android:layout_height="wrap_content"
-        android:layout_x="150dp"
-        android:layout_y="5dp"
-        android:ems="10"
-        android:inputType="number" >
+        android:inputType="number"
+        android:nextFocusDown="@+id/thirdNumber" >
     </EditText>
 
     <EditText
@@ -57,7 +41,31 @@
         android:layout_x="100dp"
         android:layout_y="5dp"
         android:ems="10"
-        android:inputType="number" />
+        android:inputType="number"
+        android:nextFocusDown="@+id/fourthNumber" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/fourthNumber"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_x="150dp"
+        android:layout_y="5dp"
+        android:ems="10"
+        android:inputType="number"
+        android:nextFocusDown="@+id/fifthNumber" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/fifthNumber"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_x="200dp"
+        android:layout_y="5dp"
+        android:ems="10"
+        android:inputType="number"
+        android:nextFocusDown="@+id/powerBall" >
+    </EditText>
 
     <EditText
         android:id="@+id/powerBall"
@@ -66,7 +74,8 @@
         android:layout_x="250dp"
         android:layout_y="5dp"
         android:ems="10"
-        android:inputType="number" />
+        android:inputType="number" >
+    </EditText>
 
     <Button
         android:id="@+id/submitButton"
@@ -92,5 +101,13 @@
         android:layout_y="254dp"
         android:calendarViewShown="false"
         android:spinnersShown="true" />
+
+    <EditText
+        android:id="@+id/resultField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="45dp"
+        android:layout_y="450dp"
+        android:ems="10" />
 
 </AbsoluteLayout>

@@ -9,45 +9,50 @@ public class CheckPrizes extends AsyncTask<Object, Void, Object> {
 
 	private static void checkPrizes(ArrayList<Integer> checkedNumbers,
 			String game) {
-		// System.out.println("I'm in the checkprizes called method");
-		// System.out.println("Checked number #0: " + checkedNumbers.get(0));
-		// System.out.println("Checked number #1: " + checkedNumbers.get(1));
 
 		if (game == "Mega Millions") {
 
 			if (checkedNumbers.get(1) == 1) {
 				if (checkedNumbers.get(0) == 5)
-					System.out.println("You hit the Jackpot!");
+					result = "You hit the Jackpot!!!!";
 				if (checkedNumbers.get(0) == 4)
-					System.out.println("You won $5,000.00");
+					result = "You won $5,000.00";
 				if (checkedNumbers.get(0) == 3)
-					System.out.println("You won $50.00");
+					result = "You won $50.00";
 				if (checkedNumbers.get(0) == 2)
-					System.out.println("You won $5.00");
+					result = "You won $5.00";
 				if (checkedNumbers.get(0) == 1)
-					System.out.println("You won $2.00");
+					result = "You won $2.00";
 				if (checkedNumbers.get(0) == 0)
-					System.out.println("You won $1.00");
+					result = "You won $1.00";
 			} else {
 
 				if (checkedNumbers.get(0) == 3) {
-					System.out.println("You've won $7.00!");
+					result = "You've won $7.00!";
 				} else {
 					if (checkedNumbers.get(0) == 4) {
-						System.out.println("You've won $100.00!");
+						result = "You've won $100.00!";
 					} else {
 						if (checkedNumbers.get(0) == 5) {
-							System.out.println("You've won $1,000,000.00!");
+							result = "You've won $1,000,000.00!";
 						} else {
-							System.out.println("You did not win, sorry.");
+							result = "You did not win, sorry.";
 						}
 					}
 				}
 			}
 		} else {
-			System.out.println("Something didn't work");
+			result = "Something didn't work";
 		}
 
+	}
+
+	public static String returnResult() {
+		return result;
+	}
+
+	public static void reset() {
+		result = "";
 	}
 
 	@Override

@@ -25,6 +25,7 @@ public class MainActivity extends Activity {
 	private EditText fourthNumber;
 	private EditText fifthNumber;
 	private EditText specialNumber;
+	private EditText resultField;
 	private ToggleButton multiplierButton;
 	private int multiplier;
 	private DatePicker datePicker;
@@ -69,6 +70,10 @@ public class MainActivity extends Activity {
 					e.printStackTrace();
 				}
 
+				resultField.setText(CheckPrizes.returnResult());
+				GetLotteryResults.reset();
+				CheckNumbers.reset();
+				CheckPrizes.reset();
 				reset();
 
 			}
@@ -91,6 +96,7 @@ public class MainActivity extends Activity {
 		fourthNumber = (EditText) findViewById(R.id.fourthNumber);
 		fifthNumber = (EditText) findViewById(R.id.fifthNumber);
 		specialNumber = (EditText) findViewById(R.id.powerBall);
+		resultField = (EditText) findViewById(R.id.resultField);
 		multiplierButton = (ToggleButton) findViewById(R.id.multiplier);
 
 		inputNumbers.add(Integer.parseInt(firstNumber.getText().toString()));
@@ -142,13 +148,13 @@ public class MainActivity extends Activity {
 	}
 
 	private void reset() {
-		// numbersHit = 0;
-		// powerBallHit = 0;
+
 		firstNumber.setText("");
 		secondNumber.setText("");
 		thirdNumber.setText("");
 		fourthNumber.setText("");
 		fifthNumber.setText("");
 		specialNumber.setText("");
+		inputNumbers.clear();
 	}
 }

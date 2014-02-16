@@ -86,6 +86,11 @@ public class GetLotteryResults extends AsyncTask<Object, Void, Object> {
 		return null;
 	}
 
+	public static void reset() {
+		lotteryNumbers.clear();
+		intLotterNumbers.clear();
+	}
+
 	public static ArrayList<Integer> returnNumbers() {
 		return intLotterNumbers;
 
