@@ -9,12 +9,17 @@ import java.util.concurrent.TimeoutException;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.text.format.Formatter;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 public class MainActivity extends Activity {
@@ -36,6 +41,8 @@ public class MainActivity extends Activity {
 	private Integer year;
 	private StringBuilder sb = new StringBuilder();
 	private NumberFormat formatter = new DecimalFormat("00");
+	final Context context = this;
+	private String results = "";
 
 	private ArrayList<Integer> inputNumbers = new ArrayList<Integer>();
 
@@ -70,7 +77,29 @@ public class MainActivity extends Activity {
 					e.printStackTrace();
 				}
 
-				resultField.setText(CheckPrizes.returnResult());
+				results = CheckPrizes.returnResult();
+
+				// THIS IS NEW
+				final Dialog dialog = new Dialog(context);
+				dialog.setContentView(R.layout.dialog);
+				dialog.setTitle("Results");
+
+				TextView text = (TextView) dialog.findViewById(R.id.text);
+				text.setText(results);
+				ImageView image = (ImageView) dialog.findViewById(R.id.image);
+				image.setImageResource(R.drawable.ic_launcher);
+
+				Button dialogButton = (Button) dialog
+						.findViewById(R.id.dialogButtonOK);
+				dialogButton.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						dialog.dismiss();
+					}
+				});
+
+				dialog.show();
+
 				GetLotteryResults.reset();
 				CheckNumbers.reset();
 				CheckPrizes.reset();
